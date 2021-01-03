@@ -38,12 +38,20 @@ class DetailViewController: UIViewController {
             .sink { (val) in
                 guard let temperature = val.first?.main.temp,
                       let minTemperature = val.first?.main.tempMin,
-                      let maxTemperature = val.first?.main.tempMax else {
+                      let maxTemperature = val.first?.main.tempMax,
+                      let humdity = val.first?.main.humidity,
+                      let pressure = val.first?.main.pressure,
+                      let windSpeed = val.first?.wind.speed,
+                      let visibility = val.first?.visibility else {
                     return
                 }
                 self.detailView.tempLabel.text = String(temperature) + "\u{00B0}" + "C"
                 self.detailView.minTempLabel.text = String(minTemperature) + "\u{00B0}" + "C"
                 self.detailView.maxTempLabel.text = String(maxTemperature) + "\u{00B0}" + "C"
+                self.detailView.humidityLabel.text = String(humdity) + "%"
+                self.detailView.pressureLabel.text = String(pressure) + " hPa"
+                self.detailView.windLabel.text = String(windSpeed) + " Km/h"
+                self.detailView.visibilityLabel.text = String(visibility / 1000) + " Km"
             }
             .store(in: &bindings)
     }

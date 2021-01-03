@@ -9,21 +9,11 @@ import UIKit
 
 class DetailView: UIView {
     
-    lazy var iconImageView: UIImageView = {
-       let iconImageView = UIImageView()
-        iconImageView.image = UIImage(systemName: "sun.max.fill")
-        iconImageView.contentMode = .scaleAspectFill
-        iconImageView.tintColor = .orange
-        iconImageView.translatesAutoresizingMaskIntoConstraints = false
-        return iconImageView
-    }()
-    
     lazy var tempLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
-        //label.font = .systemFont(ofSize: 20)
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 25)
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 40)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -46,6 +36,82 @@ class DetailView: UIView {
         return label
     }()
     
+    lazy var humidityLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var humidityTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Humidity"
+        label.textColor = .black
+        label.textAlignment = .center
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 12)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var pressureLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var pressureTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Air Pressure"
+        label.textColor = .black
+        label.textAlignment = .center
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 12)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var windLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var windTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Wind"
+        label.textColor = .black
+        label.textAlignment = .center
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 12)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var visibilityLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var visibilityTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Visibility"
+        label.textColor = .black
+        label.textAlignment = .center
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 12)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     init() {
         super.init(frame: .zero)
         setUpViews()
@@ -58,44 +124,107 @@ class DetailView: UIView {
     
     private func setUpViews() {
         // Top Icon View
-        addSubview(iconImageView)
         addSubview(tempLabel)
         addSubview(minTempLabel)
         addSubview(maxTempLabel)
+        addSubview(pressureLabel)
+        addSubview(humidityLabel)
+        addSubview(humidityTitleLabel)
+        addSubview(pressureLabel)
+        addSubview(pressureTitleLabel)
+        addSubview(windLabel)
+        addSubview(windTitleLabel)
+        addSubview(visibilityLabel)
+        addSubview(visibilityTitleLabel)
     }
     
     private func setUpConstraints() {
-        let iconImageConstraint = [
-            iconImageView.topAnchor.constraint(equalTo: topAnchor, constant: 120),
-            iconImageView.widthAnchor.constraint(equalToConstant: 120),
-            iconImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            iconImageView.heightAnchor.constraint(equalToConstant: 120)
-        ]
-        
         let currentTempLabelConstraint = [
-            tempLabel.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 50),
+            tempLabel.topAnchor.constraint(equalTo: topAnchor, constant: 140),
             tempLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            tempLabel.widthAnchor.constraint(equalToConstant: 100),
-            tempLabel.heightAnchor.constraint(equalToConstant: 40)
+            tempLabel.widthAnchor.constraint(equalToConstant: 180),
+            tempLabel.heightAnchor.constraint(equalToConstant: 60)
         ]
         
         let minTemperatureLabelConstraints = [
             minTempLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             minTempLabel.widthAnchor.constraint(equalToConstant: 100),
             minTempLabel.heightAnchor.constraint(equalToConstant: 40),
-            minTempLabel.topAnchor.constraint(equalTo: tempLabel.bottomAnchor, constant: 20)
+            minTempLabel.topAnchor.constraint(equalTo: tempLabel.bottomAnchor, constant: 50)
         ]
         
         let maxTemperatureLabelConstraints = [
             maxTempLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             maxTempLabel.widthAnchor.constraint(equalToConstant: 100),
             maxTempLabel.heightAnchor.constraint(equalToConstant: 40),
-            maxTempLabel.topAnchor.constraint(equalTo: tempLabel.bottomAnchor, constant: 20)
+            maxTempLabel.topAnchor.constraint(equalTo: tempLabel.bottomAnchor, constant: 50)
         ]
         
-        [iconImageConstraint, currentTempLabelConstraint, minTemperatureLabelConstraints, maxTemperatureLabelConstraints]
-            .forEach(NSLayoutConstraint.activate(_:))
+        let humidityLabelConstraints = [
+            humidityLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            humidityLabel.widthAnchor.constraint(equalToConstant: 100),
+            humidityLabel.heightAnchor.constraint(equalToConstant: 40),
+            humidityLabel.topAnchor.constraint(equalTo: minTempLabel.bottomAnchor, constant: 30)
+        ]
         
+        let humidityTitleLabelConstraints = [
+            humidityTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            humidityTitleLabel.widthAnchor.constraint(equalToConstant: 100),
+            humidityTitleLabel.heightAnchor.constraint(equalToConstant: 20),
+            humidityTitleLabel.topAnchor.constraint(equalTo: humidityLabel.bottomAnchor, constant: 10)
+        ]
+        
+        let pressureLabelConstraints = [
+            pressureLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            pressureLabel.widthAnchor.constraint(equalToConstant: 100),
+            pressureLabel.heightAnchor.constraint(equalToConstant: 40),
+            pressureLabel.topAnchor.constraint(equalTo: maxTempLabel.bottomAnchor, constant: 30)
+        ]
+        
+        let pressureTitleLabelConstraints = [
+            pressureTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            pressureTitleLabel.widthAnchor.constraint(equalToConstant: 100),
+            pressureTitleLabel.heightAnchor.constraint(equalToConstant: 20),
+            pressureTitleLabel.topAnchor.constraint(equalTo: pressureLabel.bottomAnchor, constant: 10)
+        ]
+        
+        let windLabelConstraints = [
+            windLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            windLabel.widthAnchor.constraint(equalToConstant: 100),
+            windLabel.heightAnchor.constraint(equalToConstant: 40),
+            windLabel.topAnchor.constraint(equalTo: humidityTitleLabel.bottomAnchor, constant: 30)
+        ]
+        
+        let windTitleLabelConstraints = [
+            windTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            windTitleLabel.widthAnchor.constraint(equalToConstant: 100),
+            windTitleLabel.heightAnchor.constraint(equalToConstant: 20),
+            windTitleLabel.topAnchor.constraint(equalTo: windLabel.bottomAnchor, constant: 10)
+        ]
+        
+        let visibilityLabelConstraints = [
+            visibilityLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            visibilityLabel.widthAnchor.constraint(equalToConstant: 100),
+            visibilityLabel.heightAnchor.constraint(equalToConstant: 40),
+            visibilityLabel.topAnchor.constraint(equalTo: pressureTitleLabel.bottomAnchor, constant: 30)
+        ]
+        
+        let visibilityTitleLabelConstraints = [
+            visibilityTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            visibilityTitleLabel.widthAnchor.constraint(equalToConstant: 100),
+            visibilityTitleLabel.heightAnchor.constraint(equalToConstant: 20),
+            visibilityTitleLabel.topAnchor.constraint(equalTo: visibilityLabel.bottomAnchor, constant: 10)
+        ]
+        
+        [
+            currentTempLabelConstraint, minTemperatureLabelConstraints,
+            maxTemperatureLabelConstraints, humidityLabelConstraints,
+            pressureLabelConstraints, humidityTitleLabelConstraints,
+            pressureTitleLabelConstraints, windLabelConstraints,
+            windTitleLabelConstraints, visibilityLabelConstraints,
+            visibilityTitleLabelConstraints
+        ]
+        .forEach(NSLayoutConstraint.activate(_:))
     }
     
     override func layoutSubviews() {
